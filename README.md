@@ -10,3 +10,7 @@ Spring OAuth2 Authorization Server with minimal configuration
 Use below command to run this application
 
 `./gradlew clean bootRun`
+
+
+Username: user
+Password: password
