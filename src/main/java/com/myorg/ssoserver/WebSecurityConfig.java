@@ -8,6 +8,8 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.session.web.http.CookieSerializer;
+import org.springframework.session.web.http.DefaultCookieSerializer;
 
 /**
  *
@@ -17,6 +19,15 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @EnableWebSecurity
 @Order(-20)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+
+    @Bean
+    public CookieSerializer cookieSerializer() {
+        
+        DefaultCookieSerializer serializer = new DefaultCookieSerializer();
+        serializer.setCookieName("SSO_SEESION");
+        serializer.setCookiePath("/");
+        return serializer;
+    }
 
     @Bean
     @Override
@@ -29,9 +40,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         auth.inMemoryAuthentication()
                 .withUser("user")
                 .roles("ADMIN")
-                .password("{noop}password");          
+                .password("{noop}password");
     }
-    
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http

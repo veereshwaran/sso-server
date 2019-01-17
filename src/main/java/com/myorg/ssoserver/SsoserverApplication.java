@@ -24,4 +24,16 @@ public class SsoserverApplication {
     public Principal user(Principal user) {
         return user;
     }
+    
+    @RequestMapping("/user/whoami")
+    @ResponseBody
+    public String whoami(Principal user) {
+        return user.getName();
+    }
+    
+    @RequestMapping("/test-api")
+    @ResponseBody
+    public String testAPI() {
+        return "Welcome";
+    }
 }
