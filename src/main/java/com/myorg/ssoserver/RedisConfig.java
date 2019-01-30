@@ -17,7 +17,7 @@ public class RedisConfig {
 
     @Autowired
     RedisConnectionFactory factory;
-
+    
     /**
      * Creates the bean for redis template.
      *
